@@ -12,8 +12,10 @@
 > 2 . 維度數或軸數：`.ndim`<br>
 > 3 . 塌縮為一維陣列：`.flatten()`<br>
 > 4 . 行列轉置：`.T`<br>
-> 其他(暫時放置，待到需要記憶體、虛數)：`.real`、`.imag`、`.data`、`.itemsize`、`.nbytes`、`.strides`
+> 其他(暫時放置，待到需要記憶體、虛數)：`.real`、`.imag`、`.data`、`.itemsize`、`.nbytes`、`.strides`<br>
 
 ## 三、改動、取部分陣列：
 > 1 . 重置：`.reshape(3, 4, order="C")`，其中C、F、A、K表示排序方式(預設為C，F為從行軸，非數組時AK無用。是數組時、A為照原型態)
-> 2 . 
+> 2 . 非零：`.nonzero()`<br>
+> 3 . 開條件：`.where()`<br>
+> 4 . 排序、排序後索引：`.sort()`、`.argsort()`<br>
