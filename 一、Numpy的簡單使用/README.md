@@ -15,7 +15,16 @@
 > 其他(暫時放置，待到需要記憶體、虛數)：`.real`、`.imag`、`.data`、`.itemsize`、`.nbytes`、`.strides`<br>
 
 ## 三、改動、取部分陣列：
-> 1 . 重置：`.reshape(3, 4, order="C")`，其中C、F、A、K表示排序方式(預設為C，F為從行軸，非數組時AK無用。是數組時、A為照原型態)
+> 1 . 重置：`.reshape(3, 4, order="C")`。C、F、A、K的功用：預設為C，F為從行軸，非數組時AK無用。是數組時、A為照原型態<br>
 > 2 . 非零：`.nonzero()`<br>
-> 3 . 開條件：`.where()`<br>
+> 3 . 開條件之傳索引、傳值：`.where()`、`np.array(...)[np.where()]`<br>
 > 4 . 排序、排序後索引：`.sort()`、`.argsort()`<br>
+其他：`.max()`、`.min()`<br>
+
+## 四、運算：
+> 1 . 歐拉數(自然數)：`np.exp()`<br>
+> 2 . 對數：`np.log(x)`、`np.log2(x)`、`np.log10(x)`、`np.log1p(x)`<br>
+> 3 . 矩陣相乘：`np.dot(A, B)`。
+> 3 務必記得A是N個向量，B是m個向量，施加A的變換到B的向量上，故結果遵照A的維度與B的向量數<br>
+> （即是說A是變換矩陣、B是向量個數），至於為何變換矩陣在左邊是遵照函數的表示方式f(x)<br>
+> 其他(易理解或未遇到簡單符號不能解決的問題)：`pow()`、`sqrt()`、`rint()`、`trunc()`、`floor()`、`ceil()`、`fix()`、`abs()`<br>
