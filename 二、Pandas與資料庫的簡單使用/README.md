@@ -55,7 +55,7 @@
 > 編碼：`data['new'] = LabelEncoder().fit_transform(data['A'].values)`<br>
 > 反查編碼(還原)：`data['new'] = LabelEncoder().inverse_transform(data['A'].values)`<br>
 > 2 . 一般性
-> `.get_dummies(data[['欄位']])`，取得欄位內各種類別、分為新行，配合`pd.concat([,]),axis=1`把新資料併在舊資料右邊`<br>
+> `.get_dummies(data[['欄位']])`，取得欄位內各種類別、分為新行，配合`pd.concat([,]),axis=1`把新資料併在舊資料右邊<br>
 > 此為One-hot Encoding(一位有效編碼)，只有0跟1`<br>
 
 ## 四、資料前處理
