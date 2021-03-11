@@ -15,4 +15,5 @@
 
 > 4 . SQL資料庫：`import sqlite3`
 >> 4 . 1 連結與建立資料庫、連結物件：`con = sqlite3.connect('檔名.db')`、`c = con.cursor()`<br>
->> 4 . 2 執行指令、確認更動、關閉連結：`c.execute()`、`con.commit()`、`con.close()`
+>> 4 . 2 執行指令、確認更動、關閉連結：`c.execute()`、`con.commit()`、`con.close()`<br>
+>> 4 . 3 讀取方式：`with open() as file:`、`pd.read_one`
