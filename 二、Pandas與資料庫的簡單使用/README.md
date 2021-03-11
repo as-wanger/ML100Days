@@ -35,12 +35,15 @@
 > 2 . 重新命名：`.rename()`，注意指定時不是用`replace(,)`，而是用dict的`{key:value}`呈現，這邊包含在`columns=`內<br>
 > 3 . 增加資料
 >> 3 . 1 增加欄位：`data['欄位名']`、`data.insert('欄位名')`<br>
->> 3 . 2 增加列資料(最後一列)：`data = data.append(pd.DataFrame([col1,col2...],columns=data.columns))`<br>
+>> 3 . 2 增加列資料(最後一列)：`data.append(pd.DataFrame([col1,col2...],columns=data.columns))`<br>
+>> 或是`data.append({key1:value1,key2:value2...})`，但要配`ignore_index=True`<br>
 
 > 4 . 刪除資料
 >> 4 . 1 刪除欄位、回傳刪除欄位、回傳刪除後剩餘欄位：`del data['欄位名']`、`data.pop('欄位名')`、`data.drop('欄位名')`<br>
 >> 4 . 2 刪除列資料：`data.drop(對應index)`<br>
 
-> 5 . 選擇資料
->> 5 . 1 指定範圍資料(回傳True資料)：`data[]`、`data.loc[]`、`data.iloc[]`，包含`data[(data.欄位1>10)&(data.欄位2<20)]`<br>
->> 5 . 2 
+> 5 . 指定範圍資料(回傳True資料)：`data[]`、`data.loc[](可併選欄位)`、`data.iloc[](可併選欄位)`，包含`data[(data.欄位1>10)&(data.欄位2<20)]`<br>
+> 6 . 串聯：`.concat()`，其中`axis=0`(預設)是列延長、`axis=1`是行延長(相似於`numpy.concatenate()`)<br>
+> `join='outer'`(預設)是聯集、`join='inner'`是交集<br>
+> 7 . 合併、聯結：`.merge()`或`.join()``how=inner`、`how=outer`、`how=left`、`how=right`，可對應前一行做合併<br>
+> 重複欄名時merge會自動分，join需要指名`lsuffix='A', rsuffix='B'`<br>
