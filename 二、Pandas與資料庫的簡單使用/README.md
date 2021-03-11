@@ -106,7 +106,7 @@
 
 > 7 . 回傳時間頻率：`data.year`, `data.month`, `data,day`, `date.day_name()`, `date.weekofyear`、`pd.offsets.BDay()`
 > 
-## 運算速度與記憶體占用
+## 十、運算速度與記憶體占用
 > ```
 > start.time() = time.time()
 > 內容
