@@ -42,8 +42,23 @@
 >> 4 . 1 刪除欄位、回傳刪除欄位、回傳刪除後剩餘欄位：`del data['欄位名']`、`data.pop('欄位名')`、`data.drop('欄位名')`<br>
 >> 4 . 2 刪除列資料：`data.drop(對應index)`<br>
 
-> 5 . 指定範圍資料(回傳True資料)：`data[]`、`data.loc[](可併選欄位)`、`data.iloc[](可併選欄位)`，包含`data[(data.欄位1>10)&(data.欄位2<20)]`<br>
+> 5 . 指定範圍資料(回傳True資料)：`data[]`、`data.loc[](可併選欄位)`、`data.iloc[](可併選欄位)`<br>
+> 包含`data[(data.欄位1>10)&(data.欄位2<20)]`<br>
 > 6 . 串聯：`.concat()`，其中`axis=0`(預設)是列延長、`axis=1`是行延長(相似於`numpy.concatenate()`)<br>
 > `join='outer'`(預設)是聯集、`join='inner'`是交集<br>
 > 7 . 合併、聯結：`.merge()`或`.join()``how=inner`、`how=outer`、`how=left`、`how=right`，可對應前一行做合併<br>
 > 重複欄名時merge會自動分，join需要指名`lsuffix='A', rsuffix='B'`<br>
+
+## 三、類別資料
+> 1 . 順序性
+> from sklearn.preprocessing import LabelEncoder，須注意其實LabelEncoder()<br>
+> 編碼：`data['new'] = LabelEncoder().fit_transform(data['A'].values)`<br>
+> 反查編碼(還原)：`data['new'] = LabelEncoder().inverse_transform(data['A'].values)`<br>
+> 2 . 一般性
+> `.get_dummies(data[['欄位']])`，取得欄位內各種類別、分為新行，配合`pd.concat([,]),axis=1`把新資料併在舊資料右邊`<br>
+> 此為One-hot Encoding(一位有效編碼)，只有0跟1`<br>
+
+## 四、資料前處理
+> 1 . 缺失值補值：`.fillna()`，如補A欄位平均值：`data.fillna(data.A.mean())`、前一值：`.fillna(method=ffill)`<br>
+> 或 後一值：`.fillna(method=bfill)`<br>
+
