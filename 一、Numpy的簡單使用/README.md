@@ -28,8 +28,8 @@
 > 3 . 矩陣相乘：`np.dot(A, B)`。須記得A是N個向量，B是m個向量，施加A的變換到B的向量上，故結果遵照A的維度與B的向量數<br>
 > （即是說A是變換矩陣、B是向量個數）<br>
 >> 3 . 1 . 變換矩陣在左遵照函數表示方式：f(x)。向量彼此間具線性代數的相加與相乘性，但變換矩陣進行線性變換的是B的向量<br>
-> 其他(易理解或未遇到簡單符號不能解決的問題)：`pow()`、`sqrt()`、`rint()`、`trunc()`、`floor()`、`ceil()`、`fix()`<br>
-> `abs()``corrcoef()`、`correlate()`、`cov()`、`.histogram()`，但是用stats、sns會比較好用<br>
+> 其他(易理解或未遇到簡單符號不能解決的問題)：`cumsum()`、`pow()`、`sqrt()`、`rint()`、`trunc()`、`floor()`、`ceil()`<br>
+> `fix()`、`abs()``corrcoef()`、`correlate()`、`cov()`、`.histogram()`，但是用stats、sns會比較好用<br>
 
 ## 五、歸檔(NumPy I/O)：
 > 1 . 存一陣列、多陣列、取：`save()`(.npy)、`savez()`(.npz)、`load()`<br>
