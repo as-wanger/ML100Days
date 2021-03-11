@@ -41,12 +41,13 @@ import Basemap<br>
 
 > 3 . Bokeh (動態的套件，類似於 D3.js)：交互資訊可視化，不需編輯 HTML 與 JavaScript 便能製作網頁前端視覺化<br>
 > 用於做瀏覽器端交互可視化的庫，實現分析師與數據的交互。<br>
-當bokeh會預設連BokehJS cdn，讓BokehJS驅動於local python env<br>
+> 當bokeh會預設連BokehJS cdn，讓BokehJS驅動於local python env<br>
+
 from bokeh.resources import INLINE <br>
 bokeh.io.output_notebook(INLINE)<br>
 
-跳轉出 html：`output_file(data.html)`<br>
-跳轉出 jupyter：`output_notebook(data.ipynb)`<br>
+> 跳轉出 html：`output_file(data.html)`<br>
+> 跳轉出 jupyter：`output_notebook(data.ipynb)`<br>
 
 from bokeh.plotting import figure, output_file, show<br>
 from bokeh.models import widgets<br>
