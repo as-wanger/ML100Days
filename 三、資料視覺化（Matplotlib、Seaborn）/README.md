@@ -80,16 +80,16 @@ import matplotlib.pyplot as plt<br>
 >>> 4 . 1 . 2 畫輪廓線並填滿：`contourf()`<br>
 >>> 4 . 1 . 3 在地圖上畫圖：`imshow()`<br>
 >>> 4 . 1 . 4 偽色圖：`pcolor()`<br>
->>> 4 . 1 . 5 偽色圖(快速版)：`pcolormesh()`<br>
+>>> 4 . 1 . 5 熱力圖：`pcolormesh()`<br>
 >>> 4 . 1 . 6 在地圖上畫線繪圖：`plot()`<br>
 >>> 4 . 1 . 7 在地圖上畫散點圖：`scatter()`<br>
 >>> 4 . 1 . 8 畫向量圖、三維即曲面圖：`quiver()`<br>
 >>> 4 . 1 . 8 畫風羽圖：`barbs()`<br>
->>> 4 . 1 . 8 畫大圓航線：`drawgreatcircle()`<br>
+>>> 4 . 1 . 8 畫大圓弧：`drawgreatcircle()`<br>
 
 >> 4 . 2 設定解析度與範圍：`resolution='x'`。x = c(原始)、l(低)、i(中)、h(高)、f(完整)或None(如果沒有使用邊界)<br>
 >>> 4 . 2 . 1 設置經緯度：左下緯度、右上緯度、左下經度、右上經度：`llcrnrlat`、`urcrnrlat`、`llcrnrlon`、`urcrnrlon`<br>
->>> 或是`lat_0`、`lat_1`、`lon_0`、`lon_1` <br>
+>>> 或是`lat_0`、`lat_1`、`lon_0`、`lon_1` （須注意這是只有部分設置投影才可使用）<br>
 >>> `llcrnrlat = -90   =  lat_0`<br>
 >>> `urcrnrlat = 90    =  lat_1`<br>
 >>> `llcrnrlon = -180` = `lon_0 = 0`<br>
@@ -121,15 +121,19 @@ map.plot(all_lines)
 >> 4 . 5 上色：<br>
 >>> 4 . 5 . 1 全部上藍色：`map.drawmapboundary(fill_color = 'aqua')`<br>
 >>> 4 . 5 . 2 陸地上珊瑚色、海洋上藍色：`map.fillcontinents(color = 'coral', lake_color = 'aqua')`<br>
+>>> 或是`map.drawlsmask(land_color='red',ocean_color='blue',lakes=True)`<br>
 >>> 4 . 5 . 3 寶石藍：`map.bluemarble()`<br>
 
->> 4 . 6 畫海岸線(畫圖)：`map.drawcoastlines()`，可包括`linewidth`、`color`(如'darked'、'b')<br>
->> 4 . 7 畫陰影浮雕圖：`map.shadedrelief(scale=0.2)`<br>
->> 4 . 8 畫國家：`map.drawcountries()`<br>
->> 4 . 9 畫州界：`map.drawstates()`<br>
->> 4 . 10 畫城市：`map.drawcounties()`<br>
->> 4 . 11 顯示：`plt.show()`<br>
->> 4 . 12 儲存：`plt.savefig('test.png')`<br>
+>> 4 . 6 畫地圖邊界：`map.drawmapboundary()`<br>
+>> 4 . 7 畫海岸線(畫圖)：`map.drawcoastlines()`，可包括`linewidth`、`color`(如'darked'、'b')<br>
+>> 4 . 8 畫陰影浮雕圖：`map.shadedrelief(scale=0.2)`<br>
+>> 4 . 9 畫國家：`map.drawcountries()`<br>
+>> 4 . 10 畫州界：`map.drawstates()`<br>
+>> 4 . 11 畫城市：`map.drawcounties()`<br>
+>> 4 . 12 添加經緯度格線：`ny = data.shape[0]; nx = data.shape[1]`、`lons, lats = m.makegrid(nx, ny)`<br>
+>> 4 . 13 加入顏色條：`map.colorbar`（參數參照）
+>> 4 . 13 顯示：`plt.show()`<br>
+>> 4 . 14 儲存：`plt.savefig('test.png')`<br>
 
 ## 二、製作繪圖板
 > 1 . `plt.subplot(a, b, c)`，a 代表 x 軸的分割、b 代表 y 軸的分割、c 代表子版的編號數<br>
@@ -162,3 +166,12 @@ from mpl_toolkits.mplot3d import Axes3D<br>
 > 3 . 創建z值並繪圖：ax.plot(x, y, zs = 0.5, zdir = 'z', color = 'black')<br>
 > 其中`zdir = 'z'`將資料繪製在z軸、`zs`為資料內容<br>
 > 
+
+## 五、實作
+> 1 . 獲取資料：`data = pd.read_csv("data.csv")`<br>
+> 2 . 拉出經緯度：`lat = np.array(data["lat"][0:280])`、`lon = np.array(data["lon"][0:280])`<br>
+> 3 . 將2 . 導入地圖軸線：`x, y = map(lon, lat)`，當然執行3 . 以前也可以`map=Basemap()`<br>
+> 4 . 建立地圖：`map.scatter(x, y, s=size)`<br>
+> 5 . 建立圖名：`plt.title("A")`
+> 6 . 顯示：`plt.show()`
+> 其他：詳見
