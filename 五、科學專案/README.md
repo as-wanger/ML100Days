@@ -104,8 +104,45 @@
 >>> 5 . 3 . 1 . 3 　R：如偵測頻率（時雨量比10分鐘及時雨量好，沒有時間遞延問題）<br>
 >>> 、連續轉分類年齡轉幼童、青少年、老人)、合併稀疏資料、定義類別資料距離（幼童、青少年、老人轉1、2、3）<br>
 >>> 或重新定義類別資料距離（1、2、3再轉1、4、9），如<br>
->>> `list={key1:value1...}`、`data['新欄位'] = data['欄位'].map(list)`<br>
+>>> `list={key1:value1...}`、`data['新欄位'] = data['欄位'].map(list)`(分類)<br>
 >>> 
 >>> 、數值到分類的映射：先`def f(x)`好一個函數，而後`data['新欄位'] = data['欄位'].apply(f)`<br>
 >>> 、創造虛擬資料（？：取決於機器學習算法，如果是以距離來量測資料的遠近<br>
 >>> ，則需將類別特徵轉換到虛擬變量中去，稱作 one-hot encoding。），又如使用`pd.get_dummies()`<br>
+
+> 5 . 4 如何選出好特徵：具有變化性、預測性、辨識力<br>
+> 即使拉出特徵，特徵還是需要選擇，使模型泛化能力更好、避免過擬合、提高特徵與目標的解釋力<br>
+> 選取方法：`sklearn.feature_selection`裡的函數<br>
+>> 5 . 4 . 1 **過濾法**(Filter)：把具變化性以及與目標變數相關的特徵，挑選出具變化性以及中高度相關的特徵，方法包含<br>
+>>> 5 . 4 . 1 . 1 移除低變異數的特徵：<br>
+>>>> 5 . 4 . 1 . 1 . 1 標準化（最大最小值）<br>
+>>>> 5 . 4 . 1 . 1 . 2 設定變異數的過濾門檻，保留超過100的變異數：`filter=VarianceThreshold(threshold=(100))`<br>
+>>>> `data_f = filter.fit_transform(data['特徵'])`<br>
+>>>> 計算每個特徵變異數(list)：`filter.variances_`<br>
+>>>> 確認哪些會留下：`filter.get_support(True)`<br>
+>>>> 須注意資料間變異數本來就有差，門檻可能不公平，故先經過標準化(z值)會比較準確(結果不相同)<br>
+>>>> 5 . 4 . 1 . 1 . 3 透過函數做計算，過濾<br>
+>>>> 5 . 4 . 1 . 1 . 4 確定哪一些特徵留下來<br>
+>>> 5 . 4 . 1 . 2 單變量特徵選取（Univariate Feature Selection）：<br>
+>>>> 5 . 4 . 1 . 2 . 1 目標變數為離散型，採用卡方檢定(兩類, chi2)或ANOVA檢定(多類, f_classif)<br>
+>>>> 目標變數為連續型，可採用 f_regression <br>
+>>>> 5 . 4 . 1 . 2 . 2 `from sklearn.feature_selection import SelectBest, f_regression`<br>
+>>>> 5 . 4 . 1 . 2 . 2 資料問題排除後，定義好`x=data['colA','colB'...]`、`y=data['欄位']`<br>
+>>>> 5 . 4 . 1 . 2 . 2 `x_new = SelectPercentile(chi2, percentile=50).fit_transform(x, y)`、`x_new.shape`<br>
+
+>> 5 . 4 . 2 **包裝法**(Wrapper)：特徵選擇看作是搜索問題，根據某一種評量標準，每次選擇某些特徵或排除某些特徵<br>
+>> 常用的方法為遞歸特徵消除(RFE)。根據離散或連續，選擇帶有 `coef_ `和`feature_importances_`的模型 <br>
+>> from sklearn.datasets import make_firedman1<br>
+>> from sklearn.feature_selection import RFE<br>
+>> from sklearn.svm import SVR<br>
+>>> 5 . 4 . 2 . 1 資料處理後，根據離散或連續，如離散型：`SVC(kernel='linear')`<br>
+>>> 最後要選擇留下多少特徵：`n_features_to_select`、每部刪除多少特徵：`Step`
+>>> 一樣資料問題排除後，定義好`x=data['colA','colB'...]`、`y=data['欄位']`<br>
+>>> `estimator = SVC(kernel='linear')`、`selector = RFE(estimator, n_features_to_select=2, step=1)`<br>
+>>> 每一步都依不同的特徵組合建立模型，判斷最終要選擇那些特徵：`selector = selector.fit(x, y)`<br>
+>>> 透過`support_`呈現包裝法搭配 SVC 下，選擇最好的特徵，用 True 來表示：`selector.support_`<br>
+>>> 排行：(1 代表被選重的特徵，2 代表次之重要的特徵，依此類推)`selector.ranking_`<br>
+>>> 排序：`x.loc[:,selector.support_].columns.tolist()`<br>
+
+>> 5 . 4 . 3 **嵌入法**(Embedded)：採用建模演算法內的特徵選取方法，得到某些特徵的權重係數<br>
+>> 根據係數的重要性來選擇特徵，但必須有演算法的先備知識 **PASS**
