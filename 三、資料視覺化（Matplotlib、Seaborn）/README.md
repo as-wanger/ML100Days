@@ -68,6 +68,69 @@ from IPython.display import IFrame<br>
 
 > 4 . Basemap：地圖可視化，以上三者效果不佳<br>
 
+pip install geos <br>
+pip install pyproj<br>
+pip install basemap <br>
+
+from mpl_toolkits.basemap import Basemap<br>
+import matplotlib.pyplot as plt<br>
+
+>> 4 . 1 建立地圖：`map = Basemap()`<br>
+>>> 4 . 1 . 1 畫輪廓線：`contour()`<br>
+>>> 4 . 1 . 2 畫輪廓線並填滿：`contourf()`<br>
+>>> 4 . 1 . 3 在地圖上畫圖：`imshow()`<br>
+>>> 4 . 1 . 4 偽色圖：`pcolor()`<br>
+>>> 4 . 1 . 5 偽色圖(快速版)：`pcolormesh()`<br>
+>>> 4 . 1 . 6 在地圖上畫線繪圖：`plot()`<br>
+>>> 4 . 1 . 7 在地圖上畫散點圖：`scatter()`<br>
+>>> 4 . 1 . 8 畫向量圖、三維即曲面圖：`quiver()`<br>
+>>> 4 . 1 . 8 畫風羽圖：`barbs()`<br>
+>>> 4 . 1 . 8 畫大圓航線：`drawgreatcircle()`<br>
+
+>> 4 . 2 設定解析度與範圍：`resolution='x'`。x = c(原始)、l(低)、i(中)、h(高)、f(完整)或None(如果沒有使用邊界)<br>
+>>> 4 . 2 . 1 設置經緯度：左下緯度、右上緯度、左下經度、右上經度：`llcrnrlat`、`urcrnrlat`、`llcrnrlon`、`urcrnrlon`<br>
+>>> 或是`lat_0`、`lat_1`、`lon_0`、`lon_1` <br>
+>>> `llcrnrlat = -90   =  lat_0`<br>
+>>> `urcrnrlat = 90    =  lat_1`<br>
+>>> `llcrnrlon = -180` = `lon_0 = 0`<br>
+>>> `urcrnrlon = 180   =  lon_1`<br>
+
+>> 4 . 3 繪製經緯線(經度：longitude、緯度：latitude，表示方式緯度在前、經度在後)<br>
+>> 4 . 3 . 1 方法一<br>
+>>> 4 . 3 . 1 . 1 先得知絕對位置並定義：如紐約市40.7127 N、74.0059 W、`NYClat, NTClon = 40.7127, -74.0059`<br>
+>>> 4 . 3 . 1 . 2 轉換成x、y軸：`xpt, ypt = map(NYClon, NYClat)`<br>
+>>> 4 . 3 . 1 . 3 繪製該座標：`map.plot(xpt, ypt , 'c*', markersize)`<br>
+ 
+>> 4 . 3 . 2 方法二：運用 "itertools" 庫中的 "chain" 模組<br>
+>>> 4 . 3 . 2 . 1 設定經度範圍：`lats = map.drawparallels(np.linspace(-90, 90, 13))`<br>
+>>> 4 . 3 . 2 . 2 設定緯度範圍：`lons = map.drawmeridians(np.linspace(-180, 180, 13))`<br>
+>>> 4 . 3 . 2 . 3 plt.Line2D 實例設置經緯線：<br>
+
+```
+lat_lines = chain(*(i[1][0] for i in lats.items()))
+lon_lines = chain(*(j[1][0] for j in lons.items()))
+all_lines = chain(lat_lines, lon_lines)
+map.plot(all_lines)
+```
+>> 4 . 4 投影：`basemap.supported_projections`，如正射投影：`map = Basemap(projection='ortho', lat_0 = 0, lon_0 = 0)`<br>
+>> 蘭伯特圓錐投影：`map = Basemap(projection = 'lcc',width=12000000,height=9000000, 
+>> lat_1=45., lat_2=55, lat_0=50, lon_0=-107, resolution=None)`<br>
+>> 米勒投影：`map = Basemap(projection='mill',llcrnrlat = -90,llcrnrlon = -180,urcrnrlat = 90,urcrnrlon = 180,
+            resolution='h')`<br>
+>> 其他：詳見https://en.wikipedia.org/wiki/List_of_map_projections<br>
+>> 4 . 5 上色：<br>
+>>> 4 . 5 . 1 全部上藍色：`map.drawmapboundary(fill_color = 'aqua')`<br>
+>>> 4 . 5 . 2 陸地上珊瑚色、海洋上藍色：`map.fillcontinents(color = 'coral', lake_color = 'aqua')`<br>
+>>> 4 . 5 . 3 寶石藍：`map.bluemarble()`<br>
+
+>> 4 . 6 畫海岸線(畫圖)：`map.drawcoastlines()`，可包括`linewidth`、`color`(如'darked'、'b')<br>
+>> 4 . 7 畫陰影浮雕圖：`map.shadedrelief(scale=0.2)`<br>
+>> 4 . 8 畫國家：`map.drawcountries()`<br>
+>> 4 . 9 畫州界：`map.drawstates()`<br>
+>> 4 . 10 畫城市：`map.drawcounties()`<br>
+>> 4 . 11 顯示：`plt.show()`<br>
+>> 4 . 12 儲存：`plt.savefig('test.png')`<br>
+
 ## 二、製作繪圖板
 > 1 . `plt.subplot(a, b, c)`，a 代表 x 軸的分割、b 代表 y 軸的分割、c 代表子版的編號數<br>
 > 每個繪圖前先建立好plt.subplot(a, b, c)，最後會輸出在一起<br>
@@ -93,9 +156,9 @@ from IPython.display import IFrame<br>
 > 4 . 格線：`plt.grid(True)`<br>
 
 ## 四、3D繪圖板
-from mpl_toolkits.mplot3d import Axes3D
-> 1 . 創建座標系：`fig = plt.figure()`、`ax = Axes3D(fig)`
-> 2 . 創建x、y值：`x=np.linspace(0,10,110)`、`y=np.cos(x * np.pi)`
-> 3 . 創建z值並繪圖：ax.plot(x, y, zs = 0.5, zdir = 'z', color = 'black')
-> 其中`zdir = 'z'`將資料繪製在z軸、`zs`為資料內容
+from mpl_toolkits.mplot3d import Axes3D<br>
+> 1 . 創建座標系：`fig = plt.figure()`、`ax = Axes3D(fig)`<br>
+> 2 . 創建x、y值：`x=np.linspace(0,10,110)`、`y=np.cos(x * np.pi)`<br>
+> 3 . 創建z值並繪圖：ax.plot(x, y, zs = 0.5, zdir = 'z', color = 'black')<br>
+> 其中`zdir = 'z'`將資料繪製在z軸、`zs`為資料內容<br>
 > 
