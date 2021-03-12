@@ -63,7 +63,7 @@ import seaborn as sns<br>
 > 需要通過比例計算以得知 p 與 q ，此時想要抽樣出的符合總抽樣個數n與部分抽樣個數k<br>
 > 也就是有三個函數要運算，分別是：`k/K`乘`(n-k)/(N-K)`除`n/N`，p 與 q 約分掉，就剩下三者組合的運算
 > `p = K/N `<br>
-> `stats.hypergeom.pmf(k,n,K,N, loc)` = `stats.hypergeom.pmf(loc - k,n,K,N)`<br>
-> `c = stats.hypergeom.cdf(k,n,p)`<br>
-> `stats.hypergeom.rvs(n,p,size)`<br>
-> `stats.hypergeom.stats(k,p,moments='mvks')`<br>
+> `stats.hypergeom.pmf(k,N,K,n, loc)` = `stats.hypergeom.pmf(loc - k,N,K,n)`<br>
+> `c = stats.hypergeom.cdf`<br>
+> `stats.hypergeom.rvs`<br>
+> `stats.hypergeom.stats`<br>
