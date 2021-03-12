@@ -174,4 +174,4 @@ from mpl_toolkits.mplot3d import Axes3D<br>
 > 4 . 建立地圖：`map.scatter(x, y, s=size)`<br>
 > 5 . 建立圖名：`plt.title("A")`
 > 6 . 顯示：`plt.show()`
-> 其他：詳見
+> 其他：詳見**D25_範例**
