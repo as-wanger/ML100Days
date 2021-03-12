@@ -154,7 +154,7 @@ map.plot(all_lines)
 ## 三、其他
 > 1 . `plt.axes`的使用：`plt.axes([x偏移1,y偏移1,x偏移2,y偏移2])`<br>
 > 2 . `plt.text`的使用：`plt.text(0.5,0.5, 'axes([0.2,0.2,.3,.3])',ha='center',va='center',size=16,alpha=.5)`<br>
-> 表示在繪圖板 x(0~1)、y(0~1)位置，字為`axes([0.2,0.2,.3,.3])`，ha 與 va 分別可以是上中下、左中右<br>
+> 表示在繪圖板 x(0至1)、y(0至1)位置，字為`axes([0.2,0.2,.3,.3])`，ha 與 va 分別可以是上中下、左中右<br>
 > 3 . 標籤刻度、字體大小：`plt.xticks([範圍],fontsize=20)`，`[範圍]`可改成`np.linspace( , , )`，y軸改成`plt.yticks`<br>
 > 或在建立刻度與軸名`set_xticklabels`<br>
 > 4 . 格線：`plt.grid(True)`<br>
@@ -172,6 +172,6 @@ from mpl_toolkits.mplot3d import Axes3D<br>
 > 2 . 拉出經緯度：`lat = np.array(data["lat"][0:280])`、`lon = np.array(data["lon"][0:280])`<br>
 > 3 . 將2 . 導入地圖軸線：`x, y = map(lon, lat)`，當然執行3 . 以前也可以`map=Basemap()`<br>
 > 4 . 建立地圖：`map.scatter(x, y, s=size)`<br>
-> 5 . 建立圖名：`plt.title("A")`
-> 6 . 顯示：`plt.show()`
-> 其他：詳見**D25_範例**
+> 5 . 建立圖名：`plt.title("A")`<br>
+> 6 . 顯示：`plt.show()`<br>
+> 其他：詳見**D25_範例**<br>
