@@ -61,8 +61,7 @@ import seaborn as sns<br>
 > 2 . 5 超幾何分配(取後不放回)<br>
 > 上述的`n = 重複次數; k = 出現次數`被限制為總個數N與部分個數K，此時發生不會是一個先驗或先設定的值<br>
 > 需要通過比例計算以得知 p 與 q ，此時想要抽樣出的符合總抽樣個數n與部分抽樣個數k<br>
-> 也就是有三個函數要運算，分別是：`k/K`乘`(n-k)/(N-K)`除`n/N`，p 與 q 約分掉，就剩下三者組合的運算
-> `p = K/N `<br>
+> 也就是有三個函數要運算，分別是：`k/K`乘`(n-k)/(N-K)`除`n/N`，p 與 q 約分掉，就剩下三者組合的運算，`p = K/N `(用不到)<br>
 > `stats.hypergeom.pmf(k,N,K,n, loc)` = `stats.hypergeom.pmf(loc - k,N,K,n)`<br>
 > `c = stats.hypergeom.cdf`<br>
 > `stats.hypergeom.rvs`<br>
