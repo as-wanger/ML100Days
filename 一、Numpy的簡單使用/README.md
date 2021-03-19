@@ -53,7 +53,7 @@
 > 7 . 秩：`np.linalg.matrix_rank(A)`<br>
 > 8 . 線性求解(向量為代數，維度為條件，組成聯立方程)：`.linalg.solve(a,b)`<br>
 > 9 . 單位矩陣、單對角矩陣：`identity`、`.diagonal(A, offset=1)`而offset也可以另外設定<br>
-> 10. 三角矩陣、上三角矩陣、下三角矩陣：`.tri(3, 5, 1, dtype=int)`、`.triu()`、`tril`<br>
+> 10. 三角矩陣、上三角矩陣、下三角矩陣：`.tri(3, 5, 1, dtype=int)`、`.triu()`、`tril()`<br>
 > 11. 矩陣分解：`.linalg.cholesky()`、`.linalg.qr()`、`.linalg.svd()`<br>
 > 
 ## 七、結構化陣列：因架構與pandas 相似，故略過
