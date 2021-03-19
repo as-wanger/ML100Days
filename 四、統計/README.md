@@ -51,10 +51,10 @@ import seaborn as sns<br>
 >> `stats.binom.stats(r,p,moments='mvks')`，固定參數的平均數（即期望值）、變異數、偏度和峰度。<br>
 >> 當 p = 常數， q = 1-p 時，變異數為 pq/n<br>
 >> 
->> 2 . 4 負二項分配（nbinom）(發生 p 或不發生 q 出現k次，共重複n次，算是一種事後檢討)<br>
->> 套自由度的觀念，最後一項沒有自由，必須乘上該機率(看發生就乘 k/n，看不發生就乘 (k-n)/n)<br>
+>> 2 . 4 負二項分配（nbinom）(發生 p 出現n次 或不發生 q 出現k次，共重複n+k次，算是一種事後檢討)<br>
+>> 套自由度的觀念，最後一項沒有自由，必須乘上該機率(看發生就乘 n /(n+k)，看不發生就乘 k /(n+k)<br>
 >> 也就是換個角度，看最後一項被限制的二項分配<br>
->> `p = 0.5; n = 重複次數; k = 出現次數`<br>
+>> `p = 0.5; n+k = 重複次數; k = 不發生次數; n = 發生次數`<br>
 >> `stats.nbinom.pmf(k,n,p)`<br>
 >> `c = stats.nbinom.cdf(k,n,p)`<br>
 >> `stats.nbinom.rvs(n,p,size)`<br>
