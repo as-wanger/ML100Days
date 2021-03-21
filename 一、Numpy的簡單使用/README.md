@@ -53,6 +53,7 @@
 > 7 . 秩：`np.linalg.matrix_rank(A)`<br>
 > 8 . 線性求解(向量為代數，維度為條件，組成聯立方程)：`.linalg.solve(a,b)`<br>
 > 9 . 單位矩陣、對角矩陣、取對角矩陣：`identity`、`.diag()`、`.diagonal(A, offset=1)`而offset也可以另外設定<br>
+> 還可以`.diag((1,2,3,4))`建立對角依序為1,2,3,4的對角矩陣<br>
 > 10. 三角矩陣、上三角矩陣、下三角矩陣：`.tri(3, 5, 1, dtype=int)`、`.triu()`、`tril()`<br>
 > 11. 矩陣分解：`.linalg.cholesky()`、`.linalg.qr()`、`.linalg.svd()`<br>
 > 
