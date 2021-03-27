@@ -44,10 +44,12 @@
 >> 2 . 4 . 其他：`comments="#"`、`skip_footer`、`skip_header`、`names=True`讀入names或names="..."則可以重新定義<br>
 > 
 ## 六、矩陣運算：
-> 1 . 矩陣相乘：`.dot()`(見四、3 .)、`.matmul(A, B)`(二維時與dot相同)，等於 A @ B<br>
-> 2 . 內積、外積：`.inner()`(一維＝矩陣相乘，更高維是最後一個軸上的和積，故最後一軸個數得相同。)、`.outer()`(成行成列)<br>
+> 1 . 矩陣相乘（點積）：`.dot()`(見四、3 .)、`.matmul(A, B)`(二維時與dot相同)，等於 A @ B<br>
+> 2 . 內積、外積：`.inner()`(一維＝點積，更高維是最後一個軸上的和積，故最後一軸個數得相同。)、`.outer()`(成行成列)<br>
 > 內積又稱為阿達馬乘積、逐點乘積<br>
 > 外積又稱為克羅內克乘積<br>
+> 3 . 元素積：`.multiply()`，與內積的差別是內積降維、元素積不降維<br>
+> 以上混淆時可參考https://www.cnblogs.com/steven-yang/p/6348112.html<br>
 > 3 . 跡：`.trace()`就是對角和<br>
 > 4 . 行列式：`.linalg.det()`<br>
 > 5 . 反矩陣：`.linalg.inv()`<br>
